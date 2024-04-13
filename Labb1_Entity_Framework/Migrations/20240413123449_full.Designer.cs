@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Labb1_Entity_Framework.Data.Migrations
+namespace Labb1_Entity_Framework.Migrations
 {
     [DbContext(typeof(Labb1DbContext))]
-    [Migration("20240411124549_userv2")]
-    partial class userv2
+    [Migration("20240413123449_full")]
+    partial class full
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,167 @@ namespace Labb1_Entity_Framework.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "399618f0-7671-48be-805f-71c60813a8a1",
+                            Email = "admin@hotmail.com",
+                            EmailConfirmed = true,
+                            Firstname = "Adam",
+                            Lastname = "Adminsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@HOTMAIL.COM",
+                            NormalizedUserName = "ADMIN@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDbqcfmeebxPFwqoXvZL/yYaz5aHZ5CQCPwBB9HroBn1uw6j24K7x/zAArcQEwZE+w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1ddee20d-453c-4474-89ec-bc599d95f13d",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "256d5a8a-5fe6-4783-bd3c-ea8942975594",
+                            Email = "user1@hotmail.com",
+                            EmailConfirmed = true,
+                            Firstname = "Tobias",
+                            Lastname = "Söderqvist",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER1@HOTMAIL.COM",
+                            NormalizedUserName = "USER1@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFWvK/jRCQ10mzY17xl4/gUkBtMym2mCqtbT5edu/qSESH3/XuQLd4xlRjwXX1CrfA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "43b07af7-bdf3-481d-ac9a-13641c5f9edd",
+                            TwoFactorEnabled = false,
+                            UserName = "user1@hotmail.com"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a524ce6a-e4d1-4973-abf3-897a8a5d7c7e",
+                            Email = "user2@hotmail.com",
+                            EmailConfirmed = true,
+                            Firstname = "John",
+                            Lastname = "Doe",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER2@HOTMAIL.COM",
+                            NormalizedUserName = "USER2@HOTMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOo75OuyTgmheUxS0Uc/H/QCeckXJOMmP98ABiSofpEo11NxXUHvs+bRNamnJWNakg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a6e4020d-8621-4280-afe4-20423c78b56d",
+                            TwoFactorEnabled = false,
+                            UserName = "user2@hotmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("Labb1_Entity_Framework.Models.VacationRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VacationType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("accepted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("VacationRequest");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 14,
+                            EmployeeId = "2",
+                            EndDate = new DateTime(2024, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 14,
+                            EmployeeId = "2",
+                            EndDate = new DateTime(2024, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 1,
+                            EmployeeId = "2",
+                            EndDate = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 1,
+                            EmployeeId = "3",
+                            EndDate = new DateTime(2024, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2024, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 14,
+                            EmployeeId = "3",
+                            EndDate = new DateTime(2024, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Days = 1,
+                            EmployeeId = "3",
+                            EndDate = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VacationType = 0,
+                            accepted = false
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -123,6 +284,26 @@ namespace Labb1_Entity_Framework.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -178,12 +359,10 @@ namespace Labb1_Entity_Framework.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +391,23 @@ namespace Labb1_Entity_Framework.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "3"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "3",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -220,12 +416,10 @@ namespace Labb1_Entity_Framework.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -233,6 +427,17 @@ namespace Labb1_Entity_Framework.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Labb1_Entity_Framework.Models.VacationRequest", b =>
+                {
+                    b.HasOne("Labb1_Entity_Framework.Areas.Identity.Data.Labb1User", "Employee")
+                        .WithMany("Vacations")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -284,6 +489,11 @@ namespace Labb1_Entity_Framework.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Labb1_Entity_Framework.Areas.Identity.Data.Labb1User", b =>
+                {
+                    b.Navigation("Vacations");
                 });
 #pragma warning restore 612, 618
         }

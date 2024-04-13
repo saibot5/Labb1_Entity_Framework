@@ -15,10 +15,12 @@ using Labb1_Entity_Framework.Utility;
 
 namespace Labb1_Entity_Framework.Controllers
 {
+    [Authorize(Roles = SD.Role_Employee + "," + SD.Role_Admin)]
     public class VacationRequestsController : Controller
     {
         private readonly Labb1DbContext _context;
         private readonly UserManager<Labb1User> _userManager;
+
 
         public VacationRequestsController(Labb1DbContext context, UserManager<Labb1User> userManager)
         {
@@ -26,9 +28,11 @@ namespace Labb1_Entity_Framework.Controllers
             _userManager = userManager;
         }
 
+
         // GET: VacationRequests
         public async Task<IActionResult> Index()
         {
+            _context.Database.EnsureCreated();
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var vacationList = _context.VacationRequest.Where(v => v.Employee.Id == userId);
@@ -41,21 +45,21 @@ namespace Labb1_Entity_Framework.Controllers
             string searchString = id;
 
             var requests = from v in _context.VacationRequest
-                           select  v;
+                           select v;
 
             requests = requests.Where(a => a.accepted == false);
             if (!String.IsNullOrEmpty(searchString))
             {
                 requests = requests.Where(s => s.Employee.Firstname.Contains(searchString) || s.Employee.Lastname.Contains(searchString));
             }
-           
+
 
             return View(await requests.Include(e => e.Employee).ToListAsync());
         }
         [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> AdminIndex(DateTime? id)
         {
-            
+
             var requests = from v in _context.VacationRequest
                            select v;
 

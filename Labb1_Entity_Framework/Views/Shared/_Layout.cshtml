@@ -26,10 +26,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="VacationRequests" asp-action="Index">My Vacation Requests</a>
-                        </li>
-                         @if (User.IsInRole(SD.Role_Admin))
+                        @if (User.IsInRole(SD.Role_Employee) || User.IsInRole(SD.Role_Admin))
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="VacationRequests" asp-action="Index">My Vacation Requests</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.Role_Admin))
                         {
 
                             <li class="nav-item">

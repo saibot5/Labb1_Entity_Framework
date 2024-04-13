@@ -15,6 +15,7 @@ namespace Labb1_Entity_Framework.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 

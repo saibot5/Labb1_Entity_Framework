@@ -16,6 +16,7 @@ namespace Labb1_Entity_Framework.Models
         public int Days { get; set; }
         public VacationTypes VacationType { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string? EmployeeId { get; set; }
         public Labb1User? Employee { get; set; }
         public bool accepted { get; set; }
     }
