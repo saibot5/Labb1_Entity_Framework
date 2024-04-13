@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Labb1_Entity_Framework.Models;
 
 namespace Labb1_Entity_Framework.Data;
 
@@ -19,4 +20,6 @@ public class Labb1DbContext : IdentityDbContext<Labb1User>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+public DbSet<Labb1_Entity_Framework.Models.VacationRequest> VacationRequest { get; set; } = default!;
 }
